@@ -1,0 +1,16 @@
+[LONGITUDINAL]
+input = {ka, V, Vm, Km, Cl}
+
+PK: 
+kel = Cl/V
+compartment(cmt=1, amount = A1, concentration=Cc, volume=V)
+absorption(cmt=1, ka)
+elimination(cmt=1, k=kel)
+elimination(cmt=1, Vm, Km)
+
+
+EQUATION:
+ddt_A1 = 0
+
+OUTPUT:
+output={Cc}

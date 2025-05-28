@@ -1,0 +1,19 @@
+[LONGITUDINAL]
+input = {Tk0, V1, Vm, Km, Cl, Q, V2}
+
+PK: 
+kel = Cl/V1
+k12 = Q/V1
+k21 = Q/V2
+compartment(cmt=1, amount = A1, concentration=Cc, volume=V1)
+absorption(cmt=1, Tk0)
+peripheral(k12, k21)
+elimination(cmt=1, k=kel)
+elimination(cmt=1, Vm, Km)
+
+
+EQUATION:
+ddt_A1 = 0
+
+OUTPUT:
+output={Cc}

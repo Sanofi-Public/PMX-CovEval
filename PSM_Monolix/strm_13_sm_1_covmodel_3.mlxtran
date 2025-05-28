@@ -1,0 +1,101 @@
+<DATAFILE>
+
+[FILEINFO]
+file={path='../datasets/strm_13_sm_1_covmodel_3_table.csv'}
+delimiter = comma
+header={Age, Weight, Height, Fat, SCR, ALT, AST, ALP, Albumin, BR, Race, Sex, CLCR, BMI, Obese, ID, AMT, TIME, ADDL, II, EVID, CMT, STUD, MDV, DV}
+
+[CONTENT]
+Age = {use=covariate, type=continuous}
+Weight = {use=covariate, type=continuous}
+Height = {use=covariate, type=continuous}
+Fat = {use=covariate, type=continuous}
+SCR = {use=covariate, type=continuous}
+ALT = {use=covariate, type=continuous}
+AST = {use=covariate, type=continuous}
+ALP = {use=covariate, type=continuous}
+Albumin = {use=covariate, type=continuous}
+BR = {use=covariate, type=continuous}
+Race = {use=covariate, type=categorical}
+Sex = {use=covariate, type=categorical}
+CLCR = {use=covariate, type=continuous}
+BMI = {use=covariate, type=continuous}
+Obese = {use=covariate, type=categorical}
+ID = {use=identifier}
+AMT = {use=amount}
+TIME = {use=time}
+ADDL = {use=additionaldose}
+II = {use=interdoseinterval}
+EVID = {use=eventidentifier}
+STUD = {use=covariate, type=categorical}
+MDV = {use=missingdependentvariable}
+DV = {use=observation, type=continuous}
+
+<MODEL>
+
+[COVARIATE]
+input = {ALP, ALT, AST, Age, Albumin, BMI, BR, CLCR, Fat, Height, SCR, Weight, Obese, Race, STUD, Sex}
+
+Obese = {type=categorical, categories={'0', '1'}}
+Race = {type=categorical, categories={'1', '2', '3', '4', '5'}}
+STUD = {type=categorical, categories={'1', '2', '3', '4', '5', '6'}}
+Sex = {type=categorical, categories={'1', '2'}}
+
+[INDIVIDUAL]
+input = {Cl_pop, omega_Cl, Q2_pop, Q3_pop, V1_pop, omega_V1, V2_pop, omega_V2, V3_pop, omega_V3, ka_pop, omega_ka, corr_V1_Cl}
+
+DEFINITION:
+Cl = {distribution=logNormal, typical=Cl_pop, sd=omega_Cl}
+Q2 = {distribution=logNormal, typical=Q2_pop, no-variability}
+Q3 = {distribution=logNormal, typical=Q3_pop, no-variability}
+V1 = {distribution=logNormal, typical=V1_pop, sd=omega_V1}
+V2 = {distribution=logNormal, typical=V2_pop, sd=omega_V2}
+V3 = {distribution=logNormal, typical=V3_pop, sd=omega_V3}
+ka = {distribution=logNormal, typical=ka_pop, sd=omega_ka}
+correlation = {level=id, r(V1, Cl)=corr_V1_Cl}
+
+[LONGITUDINAL]
+input = {b}
+
+file = 'lib:oral1_3cpt_kaClV1Q2V2Q3V3.txt'
+
+DEFINITION:
+DV = {distribution=normal, prediction=Cc, errorModel=proportional(b)}
+
+<FIT>
+data = 'DV'
+model = DV
+
+<PARAMETER>
+Cl_pop = {value=19.2, method=MLE}
+Q2_pop = {value=18, method=MLE}
+Q3_pop = {value=4.9, method=MLE}
+V1_pop = {value=628, method=MLE}
+V2_pop = {value=1400, method=MLE}
+V3_pop = {value=500, method=MLE}
+b = {value=0.0499687922466328, method=MLE}
+c = {value=1, method=FIXED}
+corr_V1_Cl = {value=0.0078441426306563, method=MLE}
+ka_pop = {value=0.75, method=MLE}
+omega_Cl = {value=0.0392207131532813, method=MLE}
+omega_V1 = {value=0.0392207131532813, method=MLE}
+omega_V2 = {value=0.0392207131532813, method=MLE}
+omega_V3 = {value=0.0392207131532813, method=MLE}
+omega_ka = {value=0.0392207131532813, method=MLE}
+
+<MONOLIX>
+
+[TASKS]
+populationParameters()
+individualParameters(method = {conditionalMean, conditionalMode })
+fim(run = false,method = StochasticApproximation)
+logLikelihood(run = false,method = ImportanceSampling)
+
+[PLOTS]
+run = true
+plots = {indfits = {selected = true}, parameterdistribution = {selected = true}, obspred = {selected = true}, covariancemodeldiagnosis = {selected = true}, covariatemodeldiagnosis = {selected = true}, vpc = {selected = true}, residualsscatter = {selected = true}, residualsdistribution = {selected = true}, randomeffects = {selected = true}, saemresults = {selected = true}}
+
+[SETTINGS]
+GLOBAL:
+exportpath = 'strm_13_sm_1_covmodel_3'
+
