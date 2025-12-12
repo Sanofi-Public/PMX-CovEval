@@ -1,0 +1,99 @@
+<DATAFILE>
+
+[FILEINFO]
+file={path='../datasets/strm_2_statm_3_covm_18_clint_pooled_covs_unchanged_table.csv'}
+delimiter = comma
+header={AGE, WEIGHT, HEIGHT, FAT, SCR, ALT, AST, ALP, ALBUMIN, BILIRUBIN, HISP, WHITE, AFRAMER, ASIAN, SEX, CLCR, BMI, OBESE, ID, AMT, TIME, ADDL, II, EVID, CMT, STUD, MDV, DV}
+
+[CONTENT]
+AGE = {use=covariate, type=continuous}
+WEIGHT = {use=covariate, type=continuous}
+HEIGHT = {use=covariate, type=continuous}
+FAT = {use=covariate, type=continuous}
+SCR = {use=covariate, type=continuous}
+ALT = {use=covariate, type=continuous}
+AST = {use=covariate, type=continuous}
+ALP = {use=covariate, type=continuous}
+ALBUMIN = {use=covariate, type=continuous}
+BILIRUBIN = {use=covariate, type=continuous}
+HISP = {use=covariate, type=categorical}
+WHITE = {use=covariate, type=categorical}
+AFRAMER = {use=covariate, type=categorical}
+ASIAN = {use=covariate, type=categorical}
+SEX = {use=covariate, type=categorical}
+CLCR = {use=covariate, type=continuous}
+BMI = {use=covariate, type=continuous}
+OBESE = {use=covariate, type=categorical}
+ID = {use=identifier}
+AMT = {use=amount}
+TIME = {use=time}
+ADDL = {use=additionaldose}
+II = {use=interdoseinterval}
+EVID = {use=eventidentifier}
+STUD = {use=covariate, type=categorical}
+MDV = {use=missingdependentvariable}
+DV = {use=observation, type=continuous}
+
+<MODEL>
+
+[COVARIATE]
+input = {AGE, ALBUMIN, ALP, ALT, AST, BILIRUBIN, BMI, CLCR, FAT, HEIGHT, SCR, WEIGHT, AFRAMER, ASIAN, HISP, OBESE, SEX, STUD, WHITE}
+
+AFRAMER = {type=categorical, categories={'0', '1'}}
+ASIAN = {type=categorical, categories={'0', '1'}}
+HISP = {type=categorical, categories={'0', '1'}}
+OBESE = {type=categorical, categories={'0', '1'}}
+SEX = {type=categorical, categories={'1', '2'}}
+STUD = {type=categorical, categories={'1', '2', '3', '4', '5'}}
+WHITE = {type=categorical, categories={'0', '1'}}
+
+[INDIVIDUAL]
+input = {Cl_pop, omega_Cl, Q_pop, V1_pop, omega_V1, V2_pop, ka_pop, omega_ka}
+
+DEFINITION:
+Cl = {distribution=logNormal, typical=Cl_pop, sd=omega_Cl}
+Q = {distribution=logNormal, typical=Q_pop, no-variability}
+V1 = {distribution=logNormal, typical=V1_pop, sd=omega_V1}
+V2 = {distribution=logNormal, typical=V2_pop, no-variability}
+ka = {distribution=logNormal, typical=ka_pop, sd=omega_ka}
+
+[LONGITUDINAL]
+input = {b}
+
+file = 'lib:oral1_2cpt_kaClV1QV2.txt'
+
+DEFINITION:
+DV = {distribution=normal, prediction=Cc, errorModel=proportional(b)}
+
+<FIT>
+data = 'DV'
+model = DV
+
+<PARAMETER>
+Cl_pop = {value=19.2, method=MLE}
+Q_pop = {value=22.9, method=MLE}
+V1_pop = {value=628, method=MLE}
+V2_pop = {value=1900, method=MLE}
+b = {value=0.2, method=MLE}
+c = {value=1, method=FIXED}
+ka_pop = {value=0.75, method=MLE}
+omega_Cl = {value=0.307484699747961, method=MLE}
+omega_V1 = {value=0.184402722997779, method=MLE}
+omega_ka = {value=0.184402722997779, method=MLE}
+
+<MONOLIX>
+
+[TASKS]
+populationParameters()
+individualParameters(method = {conditionalMean, conditionalMode })
+fim(run = false,method = StochasticApproximation)
+logLikelihood(run = false,method = ImportanceSampling)
+
+[PLOTS]
+run = true
+plots = {indfits = {selected = true}, parameterdistribution = {selected = true}, obspred = {selected = true}, covariancemodeldiagnosis = {selected = true}, covariatemodeldiagnosis = {selected = true}, vpc = {selected = true}, residualsscatter = {selected = true}, residualsdistribution = {selected = true}, randomeffects = {selected = true}, saemresults = {selected = true}}
+
+[SETTINGS]
+GLOBAL:
+exportpath = 'strm_2_statm_3_covm_18_clint_pooled_covs_unchanged'
+

@@ -1,0 +1,6 @@
+"name","index","index2","value","fix","type"
+"KA",2,2,0,TRUE,"var"
+"VC",3,3,0,TRUE,"var"
+"VP",4,4,0,TRUE,"var"
+"VMAX",1,1,0,TRUE,"var"
+"elim_centrvol",1,3,0,TRUE,"covar"

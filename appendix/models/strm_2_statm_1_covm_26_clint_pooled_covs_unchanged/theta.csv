@@ -1,0 +1,11 @@
+"name","index","value","fix","label","unit"
+"BIO",1,1,FALSE,"Bioavailability",NA
+"KA",2,0.75,TRUE,"Absorption rate","1/h"
+"VC",3,628,TRUE,"Volume of central compartment","L"
+"VP",4,1900,TRUE,"Volume of peripheral compartment","L"
+"Q",5,22.9,TRUE,"Inter-compartment flow","L/h"
+"CL",6,19.2,TRUE,"Clearance","L/h"
+"POP_CL_CLCR",7,0.0013,TRUE,"CLCR effect on CL","None"
+"POP_CL_BILIRUBIN",8,0.1839,TRUE,"BILIRUBIN effect on CL","None"
+"POP_VC_WEIGHT",9,0.0025,TRUE,"WEIGHT effect on VC","None"
+"POP_VC_ALBUMIN",10,0.1505,TRUE,"ALBUMIN effect on VC","None"
