@@ -1,6 +1,0 @@
-"name","index","index2","value","fix","type"
-"KA",2,2,0.184402722997779,TRUE,"var"
-"VC",3,3,0.307484699747961,TRUE,"var"
-"VP",4,4,0.0392207131532813,TRUE,"var"
-"CL",1,1,0.307484699747961,TRUE,"var"
-"elim_centrvol",1,3,0.0614969399495921,TRUE,"covar"

@@ -3,9 +3,18 @@
 [FILEINFO]
 file={path='../datasets/strm_2_statm_1_covm_15_clint_pooled_covs_unchanged_table.csv'}
 delimiter = comma
-header={AGE, WEIGHT, HEIGHT, FAT, SCR, ALT, AST, ALP, ALBUMIN, BILIRUBIN, HISP, WHITE, AFRAMER, ASIAN, SEX, CLCR, BMI, OBESE, ID, AMT, TIME, ADDL, II, EVID, CMT, STUD, MDV, DV}
+header={ID, AMT, TIME, ADDL, II, EVID, CMT, STUD, MDV, TAD, DOSE, DV, AGE, WEIGHT, HEIGHT, FAT, SCR, ALT, AST, ALP, ALBUMIN, BILIRUBIN, CLCR, BMI, HISP, WHITE, AFRAMER, ASIAN, SEX, OBESE}
 
 [CONTENT]
+ID = {use=identifier}
+AMT = {use=amount}
+TIME = {use=time}
+ADDL = {use=additionaldose}
+II = {use=interdoseinterval}
+EVID = {use=eventidentifier}
+STUD = {use=covariate, type=categorical}
+MDV = {use=missingdependentvariable}
+DV = {use=observation, type=continuous}
 AGE = {use=covariate, type=continuous}
 WEIGHT = {use=covariate, type=continuous}
 HEIGHT = {use=covariate, type=continuous}
@@ -16,23 +25,14 @@ AST = {use=covariate, type=continuous}
 ALP = {use=covariate, type=continuous}
 ALBUMIN = {use=covariate, type=continuous}
 BILIRUBIN = {use=covariate, type=continuous}
+CLCR = {use=covariate, type=continuous}
+BMI = {use=covariate, type=continuous}
 HISP = {use=covariate, type=categorical}
 WHITE = {use=covariate, type=categorical}
 AFRAMER = {use=covariate, type=categorical}
 ASIAN = {use=covariate, type=categorical}
 SEX = {use=covariate, type=categorical}
-CLCR = {use=covariate, type=continuous}
-BMI = {use=covariate, type=continuous}
 OBESE = {use=covariate, type=categorical}
-ID = {use=identifier}
-AMT = {use=amount}
-TIME = {use=time}
-ADDL = {use=additionaldose}
-II = {use=interdoseinterval}
-EVID = {use=eventidentifier}
-STUD = {use=covariate, type=categorical}
-MDV = {use=missingdependentvariable}
-DV = {use=observation, type=continuous}
 
 <MODEL>
 

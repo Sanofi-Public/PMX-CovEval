@@ -3,27 +3,9 @@
 [FILEINFO]
 file={path='../datasets/strm_2_statm_2_covm_2_clint_pooled_covs_uncorrelatedCLCR_table.csv'}
 delimiter = comma
-header={AGE, HEIGHT, WEIGHT_UNCORR, FAT_UNCORR, SCR, ALT, AST, ALP, ALBUMIN, BILIRUBIN, HISP, WHITE, AFRAMER, ASIAN, SEX, CLCR, BMI_UNCORR, OBESE, ID, AMT, TIME, ADDL, II, EVID, CMT, STUD, MDV, DV}
+header={ID, AMT, TIME, ADDL, II, EVID, CMT, STUD, MDV, TAD, DOSE, DV, AGE, WEIGHT_UNCORR, HEIGHT, FAT_UNCORR, SCR, ALT, AST, ALP, ALBUMIN, BILIRUBIN, CLCR, BMI_UNCORR, HISP, WHITE, AFRAMER, ASIAN, SEX, OBESE}
 
 [CONTENT]
-AGE = {use=covariate, type=continuous}
-HEIGHT = {use=covariate, type=continuous}
-WEIGHT_UNCORR = {use=covariate, type=continuous}
-FAT_UNCORR = {use=covariate, type=continuous}
-SCR = {use=covariate, type=continuous}
-ALT = {use=covariate, type=continuous}
-AST = {use=covariate, type=continuous}
-ALP = {use=covariate, type=continuous}
-ALBUMIN = {use=covariate, type=continuous}
-BILIRUBIN = {use=covariate, type=continuous}
-HISP = {use=covariate, type=categorical}
-WHITE = {use=covariate, type=categorical}
-AFRAMER = {use=covariate, type=categorical}
-ASIAN = {use=covariate, type=categorical}
-SEX = {use=covariate, type=categorical}
-CLCR = {use=covariate, type=continuous}
-BMI_UNCORR = {use=covariate, type=continuous}
-OBESE = {use=covariate, type=categorical}
 ID = {use=identifier}
 AMT = {use=amount}
 TIME = {use=time}
@@ -33,6 +15,24 @@ EVID = {use=eventidentifier}
 STUD = {use=covariate, type=categorical}
 MDV = {use=missingdependentvariable}
 DV = {use=observation, type=continuous}
+AGE = {use=covariate, type=continuous}
+WEIGHT_UNCORR = {use=covariate, type=continuous}
+HEIGHT = {use=covariate, type=continuous}
+FAT_UNCORR = {use=covariate, type=continuous}
+SCR = {use=covariate, type=continuous}
+ALT = {use=covariate, type=continuous}
+AST = {use=covariate, type=continuous}
+ALP = {use=covariate, type=continuous}
+ALBUMIN = {use=covariate, type=continuous}
+BILIRUBIN = {use=covariate, type=continuous}
+CLCR = {use=covariate, type=continuous}
+BMI_UNCORR = {use=covariate, type=continuous}
+HISP = {use=covariate, type=categorical}
+WHITE = {use=covariate, type=categorical}
+AFRAMER = {use=covariate, type=categorical}
+ASIAN = {use=covariate, type=categorical}
+SEX = {use=covariate, type=categorical}
+OBESE = {use=covariate, type=categorical}
 
 <MODEL>
 

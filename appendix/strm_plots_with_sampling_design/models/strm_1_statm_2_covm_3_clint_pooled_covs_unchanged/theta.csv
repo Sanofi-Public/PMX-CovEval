@@ -3,5 +3,5 @@
 "KA",2,0.75,TRUE,"Absorption rate","1/h"
 "VC",3,628,TRUE,"Volume of central compartment","L"
 "CL",4,19.2,TRUE,"Clearance","L/h"
-"POP_CL_CLCR",5,0.0021,TRUE,"CLCR effect on CL","None"
+"POP_CL_CLCR",5,0.0025,TRUE,"CLCR effect on CL","None"
 "POP_CL_BILIRUBIN",6,0.2915,TRUE,"BILIRUBIN effect on CL","None"
