@@ -34,12 +34,14 @@ To add your covariate model building method's results, please send a `.csv` file
 | `hardware_ram`       | Available RAM                                                                       |
 | `software_os`        | Operating system                                                                    |
 | `software_kernel`    | OS kernel version                                                                   |
+| `n_cpu`              | Number of CPUs used                                                                 |
+| `execution_comments` | Needed details regarding execution arguments or other                               |
 
 Therefore, if you submit results for a single method, your submitted .csv file should contain 127 rows (for the 127 scenarios).
 
 `hardware_x` and `software_x` are here to inform on the computational environment used, enabling fair runtime comparisons across methods.
 
-If you submit results generated on a new {`hardware_processor`, `hardware_ram`, `software_os`, `software_kernel`} quartet, you should also submit results of a CMB method already present in the benchmark on that new quartet. This provides a common reference point for normalizing runtime comparisons across different computational environments.
+If you submit results generated on a new {`hardware_processor`, `hardware_ram`, `software_os`, `software_kernel`, `n_cpu`} quintet, you should also submit results of a CMB method already present in the benchmark on that new quintet. This provides a common reference point for normalizing runtime comparisons across different computational environments and settings.
 
 ## Components utility
 
