@@ -1,3 +1,7 @@
+
+
+**⚠️ Warning: The fixed initial benchmark will be uploaded on Monday, June 22nd.**
+
 # PMX-CovEval: A framework for covariate model model building benchmarking
 
 This repository contains all five components of PMX-CovEval:
